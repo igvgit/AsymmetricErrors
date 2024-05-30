@@ -1,0 +1,88 @@
+Version 0.7 - development
+
+* Removed "examples" directory. All usage is now from the Python wrapper.
+
+* Added a number of log likelihood models: MoldedQuartic, MatchedQuintic,
+  InterpolatedSeptic, etc.
+
+* Added class DistributionLogli to create log likelihood models from
+  distribution models. Added static functions "fromModeAndDeltas"
+  to a variety of distribution models, needed for the same purpose.
+
+* Added class "QVWGaussian". Added back Edgeworth expansions with just
+  three cumulants. The class is now called "EdgeworthExpansion3".
+
+* Added classes "DoubleCubicGaussian" and "SymmetricBetaGaussian".
+
+* Added class "TabulatedDensity1D" to represent densities utilizing
+  linear interpolation.
+
+* Added some new methods to AbsDistributionModel1D and all derived
+  classes.
+
+* Added static bool "isFullOPAT" to all distribution models in order to
+  distinguish distributions that can be used as models for arbitrary
+  OPAT outcomes (including shifts of the same sign) and that have
+  a standard constructor from mu, sigmaPlus, and sigmaMinus.
+
+* Added methods "posteriorMean" and "posteriorVariance" to the
+  log-likelihood curves.
+
+* Various small fixes.
+
+
+Version 0.6 - August 1 2023, by I. Volobouev
+
+* Added class "InterpolatedDensity1D".
+
+
+Version 0.5 - July 22 2023, by I. Volobouev
+
+* Added class "LikelihoodAccumulator".
+
+* Added class "RailwayGaussian".
+
+* Removed class "EdgeworthExpansion" for now. It is very difficult
+  to ensure that the density does not get negative.
+
+* Added methods "fromQuantiles" to various distribution classes.
+
+* Added determination of maximum entropy kurtosis to Johnson systems.
+
+* Added factories for distribution classes and likelihood curves.
+
+* Added a number of mathematical utilities.
+
+
+Version 0.4 - July 13 2023, by I. Volobouev
+
+* Added a base class for handling log-likelihood curve shifting and scaling.
+
+* Implemented a number of log-likelihood curves from arXiv:physics/0406120v1.
+
+
+Version 0.3 - July 10 2023, by I. Volobouev
+
+* Added 6th degree polynomial term to the Edgeworth expansion density
+  (and corresponding term to cdf).
+
+* Added the abstract base class for the log-likelihood curves and
+  an implementation with a cubic Hermite spline on a regular grid.
+
+
+Version 0.2 - July 4 2023, by I. Volobouev
+
+* Added constructors from cumulants to all density models.
+
+* Added numerical convolutions.
+
+
+Version 0.1 (just a partial prototype) - July 1 2023, by I. Volobouev
+
+* This version contains, basically, implementations of various univariate
+  statistical distributions which "slightly" differ from the Gaussian.
+  The relevant header file is "ase/DistributionModels1D.hh". The following
+  classes are currently implemented: Gaussian, DimidatedGaussian,
+  DistortedGaussian, SkewNormal, LogNormal, JohnsonSu, JohnsonSb,
+  JohnsonSystem, EdgeworthExpansion, and EmpiricalDistribution (the
+  last one is useful for testing and visualization purposes).

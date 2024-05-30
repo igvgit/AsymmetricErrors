@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: ase
+Description: Asymmetric Errors
+Version: @VERSION@
+Libs: -L${libdir} -lase
+Cflags: -I${includedir}

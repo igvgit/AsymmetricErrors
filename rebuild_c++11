@@ -1,0 +1,7 @@
+autoreconf --force --install
+
+setenv PKG_CONFIG_PATH /usr/local/lib/pkgconfig
+setenv CXXFLAGS "-std=c++11 -O3 -Wall -W -Werror"
+
+./configure --disable-static --with-pic
+make -j 4
