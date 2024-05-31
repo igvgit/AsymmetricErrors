@@ -14,6 +14,8 @@ namespace ase {
     class TabulatedDensity1D : public AbsLocationScaleFamily
     {
     public:
+        static const bool isFullOPAT = false;
+
         inline TabulatedDensity1D(const double unscaledXmin,
                                   const double unscaledXmax,
                                   const std::vector<double>& unscaledDensityValues)

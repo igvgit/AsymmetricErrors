@@ -15,6 +15,8 @@ namespace ase {
     class InterpolatedDensity1D : public AbsLocationScaleFamily
     {
     public:
+        static const bool isFullOPAT = false;
+
         InterpolatedDensity1D(double unscaledXmin, double unscaledXmax,
                               const std::vector<double>& unscaledDensityValues);
 
