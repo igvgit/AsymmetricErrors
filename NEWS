@@ -1,4 +1,4 @@
-Version 0.7 - development
+Version 0.7 - June 3 2024, by I. Volobouev
 
 * Removed "examples" directory. All usage is now from the Python wrapper.
 
