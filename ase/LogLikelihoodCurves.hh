@@ -1058,6 +1058,8 @@ namespace ase {
             {return "ConservativeSigma20";}
     };
 
+    // This class minimizes the discontinuity in the
+    // third derivative at the cost of being less conservative
     class ConservativeSigmaMax : public ConservativeSpline
     {
     public:
