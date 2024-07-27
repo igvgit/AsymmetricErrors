@@ -3255,6 +3255,11 @@ namespace ase {
             "ase::FechnerDistribution::fromQuantiles",
             sigmaPlus, sigmaMinus, skewMax);
 
+        const double aveSigma = (sigmaPlus + sigmaMinus)/2.0;
+        if (std::abs(sigmaPlus - sigmaMinus)/aveSigma <= 2.0*DBL_EPSILON)
+            return std::unique_ptr<FechnerDistribution>(
+                new FechnerDistribution(median, aveSigma, aveSigma));
+
         return buildFromMedianAndSigmas<FechnerDistribution>(
             median, sigmaPlus, sigmaMinus, skewMax);
     }
