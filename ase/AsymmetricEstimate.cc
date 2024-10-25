@@ -69,6 +69,11 @@ namespace ase {
         return sigPlus_ >= 0.0 || sigMinus_ >= 0.0 ? as : -as;
     }
 
+    AsymmetricEstimate AsymmetricEstimate::operator-() const
+    {
+        return *this * (-1.0);
+    }
+
     AsymmetricEstimate parseAsymmetricEstimate(const std::string& line)
     {
         std::istringstream is;
@@ -208,4 +213,25 @@ bool operator==(const ase::AsymmetricEstimate& l,
            l.location() == r.location() &&
            l.sigmaPlus() == r.sigmaPlus() &&
            l.sigmaMinus() == r.sigmaMinus();
+}
+
+ase::AsymmetricEstimate operator*(const ase::AsymmetricEstimate& l,
+                                  const double& r)
+{
+    if (r >= 0.0)
+        return ase::AsymmetricEstimate(r*l.location(), r*l.sigmaPlus(),
+                                       r*l.sigmaMinus(), l.errorType());
+    else
+        return ase::AsymmetricEstimate(r*l.location(), -r*l.sigmaMinus(),
+                                       -r*l.sigmaPlus(), l.errorType());
+}
+
+ase::AsymmetricEstimate operator/(const ase::AsymmetricEstimate& l,
+                                  const double& r)
+{
+    if (r == 0.0)
+        throw std::invalid_argument(
+            "In operator/ between ase::AsymmetricEstimate and double: "
+            "division by zero encountered");
+    return l*(1.0/r);
 }

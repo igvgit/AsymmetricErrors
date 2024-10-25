@@ -43,6 +43,13 @@ namespace ase {
         double width() const;
         double asymmetry() const;
 
+        // Unary operators
+        AsymmetricEstimate operator-() const;
+        inline AsymmetricEstimate operator+() const
+        {
+            return *this;
+        }
+
     private:
         void validate() const;
 
@@ -63,11 +70,52 @@ namespace ase {
 // Dump a text reprsesentation of the estimate
 std::ostream& operator<<(std::ostream& os, const ase::AsymmetricEstimate& e);
 
+// Comparison for equality
 bool operator==(const ase::AsymmetricEstimate& l,
                 const ase::AsymmetricEstimate& r);
 
 inline bool operator!=(const ase::AsymmetricEstimate& l,
                        const ase::AsymmetricEstimate& r)
-{return !(l == r);}
+{
+    return !(l == r);
+}
+
+// Convenience binary arithmetic operations with exact numbers
+ase::AsymmetricEstimate operator*(const ase::AsymmetricEstimate& l,
+                                  const double& r);
+
+inline ase::AsymmetricEstimate operator*(const double& l,
+                                         const ase::AsymmetricEstimate& r)
+{
+    return r * l;
+}
+
+ase::AsymmetricEstimate operator/(const ase::AsymmetricEstimate& l,
+                                  const double& r);
+    
+inline ase::AsymmetricEstimate operator+(const ase::AsymmetricEstimate& l,
+                                         const double& r)
+{
+    return ase::AsymmetricEstimate(l.location() + r, l.sigmaPlus(),
+                                   l.sigmaMinus(), l.errorType());
+}
+
+inline ase::AsymmetricEstimate operator+(const double& l,
+                                         const ase::AsymmetricEstimate& r)
+{
+    return r + l;
+}
+
+inline ase::AsymmetricEstimate operator-(const ase::AsymmetricEstimate& l,
+                                         const double& r)
+{
+    return l + (-1.0*r);
+}
+
+inline ase::AsymmetricEstimate operator-(const double& l,
+                                         const ase::AsymmetricEstimate& r)
+{
+    return r*(-1.0) + l;
+}
 
 #endif // ASE_ASYMMETRICESTIMATE_HH_
