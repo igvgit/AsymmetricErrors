@@ -1,6 +1,6 @@
 AC_PREREQ([2.71])
 
-AC_INIT([ase],[0.7])
+AC_INIT([ase],[0.8])
 
 AM_INIT_AUTOMAKE([foreign])
 

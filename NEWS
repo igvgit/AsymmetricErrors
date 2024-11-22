@@ -1,3 +1,8 @@
+Version 0.8 - November 22, by I. Volobouev
+
+* Various small fixes and improvements.
+
+
 Version 0.7 - June 3 2024, by I. Volobouev
 
 * Removed "examples" directory. All usage is now from the Python wrapper.
