@@ -111,6 +111,9 @@ namespace ase {
         inline virtual std::string classname() const override
             {return "TruncatedCubicLogli";}
 
+        inline double alpha() const {return alpha_;}
+        inline double beta() const {return beta_;}
+
     protected:
         inline virtual double unnormalizedMoment(
             const double p0, const unsigned n,

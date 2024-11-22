@@ -33,7 +33,8 @@ namespace ase {
     bool findMinimumGoldenSection(const Functor& f,
                                   Real xleft, Real xmiddle, Real xright,
                                   const Real tol, Real* argmin,
-                                  Real* fmin = 0)
+                                  Real* fmin = 0,
+                                  const bool searchForMaximum = false)
     {
         static const Real zero = Real();
         static const Real frac = (3.0 - std::sqrt(static_cast<Real>(5)))/2.0;
@@ -44,10 +45,11 @@ namespace ase {
         assert(xmiddle < xright);
         assert(tol > zero);
 
+        const Real one = searchForMaximum ? -1.0 : 1.0;
         const Real sqrtol = std::sqrt(tol);
-        Real fleft = f(xleft);
-        Real fmiddle = f(xmiddle);
-        Real fright = f(xright);
+        Real fleft = one*f(xleft);
+        Real fmiddle = one*f(xmiddle);
+        Real fright = one*f(xright);
         if (!isMinimumBracketed(fleft, fmiddle, fright))
             return false;
 
@@ -60,7 +62,7 @@ namespace ase {
             const bool splitRight = lenRight > lenLeft;
             const Real xnext = splitRight ? xmiddle + lenRight*frac :
                                             xmiddle - lenLeft*frac;
-            const Real fnext = f(xnext);
+            const Real fnext = one*f(xnext);
             if (splitRight)
             {
                 if (fnext < fmiddle || (fnext == fmiddle && fright > fmiddle))
